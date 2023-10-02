@@ -1,0 +1,286 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.blob1 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: -10;
+}
+
+.blob2,
+.blob3 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -10;
+}
+
+.welcome-page {
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-page-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: #293264;
+  text-align: center;
+  font-family: Karla;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.description {
+  margin-top: 0.5em;
+  color: #293264;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.start-btn {
+  margin-top: 2em;
+  padding: 1em 2em;
+  color: white;
+  font-size: 1rem;
+  font-family: Inter;
+  background: #4d5b9e;
+  border-radius: 15px;
+  border: 0;
+  cursor: pointer;
+}
+
+.start-btn:focus {
+  outline: none;
+}
+
+.start-btn:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+/* quiz page styles */
+.quiz-page {
+  width: 100%;
+  height: 100%;
+}
+
+.quiz-container {
+  margin-top: 30px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.question {
+  width: 90%;
+  color: #293264;
+  font-family: Karla;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.each-quiz {
+  width: 60%;
+  border-bottom: 0.794px solid #dbdef0;
+  margin-bottom: 1em;
+}
+
+.options-container {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+.option {
+  padding: 0.5em 1em;
+  color: #293264;
+  font-family: Inter;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 20px;
+  border: 0.794px solid #4d5b9e;
+  cursor: pointer;
+}
+
+.option input[type="radio"] {
+  display: none;
+}
+
+.checked {
+  background-color: #d6dbf5;
+}
+
+.check-ans-btn {
+  padding: 0.5em 1em;
+  color: #f5f7fb;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: normal;
+  background-color: #4d5b9e;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.check-ans-btn:focus {
+  outline: none;
+}
+
+.check-ans-btn:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.check-ans-btn:disabled{
+  opacity: 0.5;
+}
+
+.correct-answer {
+  background-color: aquamarine;
+}
+
+.wrong-answer {
+  background-color: rgb(222, 118, 139);
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+}
+
+.score {
+  color: #293264;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.play-again-btn {
+  margin-left: 1.5em;
+  color: #f5f7fb;
+  background-color: #4d5b9e;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.play-again-btn:focus {
+  outline: none;
+}
+
+.play-again-btnactive {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+
+.loader-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-svg {
+  width: 20%;
+}
+
+@media screen and (max-width: 480px) {
+  /* Styles here will apply when the viewport width is 768px or less */
+  html {
+    font-size: 12px;
+  }
+  .welcome-page {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .welcome-page .blob1 {
+    width: 150px;
+  }
+
+  .welcome-page .blob2 {
+    width: 150px;
+  }
+
+  .each-quiz {
+    width: 90%;
+  }
+
+  .blob1,
+  .blob2 {
+    width: 70px;
+    z-index: -10;
+  }
+  .blob3 {
+    width: 40px;
+    z-index: -10;
+  }
+
+  .score-container {
+    flex-direction: column;
+  }
+  .play-again-btn {
+    margin: 10px auto;
+  }
+
+  .loading-svg {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 13px;
+  }
+
+  #root {
+    margin-top: 60px;
+  }
+
+  .each-quiz {
+    width: 80%;
+  }
+
+  .blob3 {
+    width: 100px;
+  }
+}
