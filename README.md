@@ -1,8 +1,16 @@
-# React + Vite
+# Quizzical - React Quiz WebApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Quizzical is a Quiz WebApp developed as a Solo Project for the Scrimba Frontend Career Path course. It allows users to play trivia quizzes by accessing questions from the Open Trivia Database API.
 
-Currently, two official plugins are available:
+## Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You can experience Quizzical live [here](https://quizzical-trivia-webapp.netlify.app).
+
+## Built With
+
+Quizzical is built using the following technologies:
+
+- HTML 5
+- CSS 3
+- JavaScript
+- React.js
