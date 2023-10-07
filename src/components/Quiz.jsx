@@ -4,12 +4,14 @@ import blob from "/blob.svg";
 import blob3 from "/blob3.svg";
 import loader from "/loader.svg"
 import { nanoid } from "nanoid";
+import Questions from "./Questions";
 
-const Quiz = ({ handlePlayAgain }) => {
+const Quiz = () => {
   const [quizes, setQuizes] = useState([]);
   const [selectedValues, setSelectedValues] = useState({});
   const [isAnswerChecked, setIsAnswerChecked] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [gameNumber, setGameNumber] = useState(0);
 
   const handleRadioChange = (event, questionId) => {
     const { value } = event.target;
@@ -26,6 +28,13 @@ const Quiz = ({ handlePlayAgain }) => {
     return newArray;
   }
 
+  function reset(){
+    setSelectedValues({})
+    setIsAnswerChecked(false)
+    setLoading(true)
+    setGameNumber(prevGameNumber => prevGameNumber + 1)
+  }
+
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
       .then((res) => res.json())
@@ -38,13 +47,14 @@ const Quiz = ({ handlePlayAgain }) => {
           ),
         }));
         setQuizes(quizzesWithShuffledAnswers);
+        setLoading(false)
       });
 
     return () => {
       setQuizes([])
       setSelectedValues({})
     };
-  }, []); 
+  }, [gameNumber]); 
 
   const calculateCorrectAnswers = () => {
     let correctCount = 0;
@@ -74,45 +84,20 @@ const Quiz = ({ handlePlayAgain }) => {
     const answersArray = quiz.answersArray;
 
     return (
-      <div key={nanoid()} className="each-quiz">
-        <p className="question">{question}</p>
-        <div className="options-container">
-          {answersArray.map((answer) => (
-            <label
-              key={nanoid()}
-              className={`option 
-              ${selectedValues[questionId] === answer ? "checked" : ""}
-              
-              
-              ${
-                isAnswerChecked
-                  ? answer === correctAnswer
-                    ? "correct-answer"
-                    : selectedValues[questionId] === answer
-                    ? "wrong-answer"
-                    : ""
-                  : ""
-              }
-              `}
-            >
-              <input
-                type="radio"
-                value={answer}
-                checked={selectedValues[questionId] === answer}
-                onChange={(event) => handleRadioChange(event, questionId)}
-                disabled = {isAnswerChecked}
-              />
-              {he.decode(answer)}
-            </label>
-          ))}
-        </div>
-      </div>
-    );
+      <Questions
+        key={nanoid()} 
+        question={question}
+        answersArray={answersArray}
+        questionId = {questionId}
+        correctAnswer = {correctAnswer}
+        isAnswerChecked={isAnswerChecked}
+        selectedValues={selectedValues}
+        handleRadioChange={handleRadioChange}
+      />
+    )
   });
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 2000);
+
 
   return (
     <div className="quiz-page">
@@ -132,12 +117,12 @@ const Quiz = ({ handlePlayAgain }) => {
               <p className="score">
                 {`You scored ${totalScore}/5 correct answers`}{" "}
               </p>
-              <button className="play-again-btn" onClick={handlePlayAgain}>
+              <button className="play-again-btn" onClick={reset}>
                 Play again
               </button>
             </div> )
           : (
-            <button className="check-ans-btn" onClick={checkAnswers} disabled = {Object.keys(selectedValues).length === 0}>
+            <button className="check-ans-btn" onClick={checkAnswers} disabled = {Object.keys(selectedValues).length < 5}>
               Check Answer
             </button>
           )}
