@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Welcome from "./components/welcome"
+import Welcome from "./components/Welcome"
 import Quiz from "./components/Quiz"
 function App() {
 
